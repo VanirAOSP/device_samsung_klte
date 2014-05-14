@@ -123,6 +123,15 @@ bin/time_daemon
 
 # Camera
 bin/mm-qcamera-daemon
+cameradata/C16QL_Isp0_s5k2p2xx.bin
+cameradata/C16QL_Isp1_s5k2p2xx.bin
+cameradata/F16QL_Isp0_s5k2p2xx.bin
+cameradata/F16QL_Isp1_s5k2p2xx.bin
+cameradata/F16QS_Isp0_imx240.bin
+cameradata/F16QS_Isp1_imx240.bin
+cameradata/Master0.bin
+cameradata/Master1.bin
+cameradata/cal_data_LSCmaster.bin
 cameradata/datapattern_420sp.yuv
 cameradata/datapattern_front_420sp.yuv
 etc/C16QL_s5k2p2xx_module_info.xml
