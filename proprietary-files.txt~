@@ -11,7 +11,7 @@ bin/thermald
 bin/thermal-engine
 vendor/lib/libthermalclient.so
 
-# Bluetooth
+# Bluetooth firmware
 vendor/firmware/bcm4350.hcd
 vendor/firmware/bcm4350.hcd:vendor/firmware/bcm4335.hcd
 #vendor/firmware/bcm4339_A0.hcd
@@ -19,6 +19,9 @@ vendor/firmware/bcm4350.hcd:vendor/firmware/bcm4335.hcd
 #vendor/firmware/bcm4339_wisol.hcd
 
 # GPS
+-app/com.qualcomm.location.apk
+bin/gsiff_daemon
+etc/permissions/com.qualcomm.location.xml
 lib/libloc_api_v02.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
@@ -26,7 +29,9 @@ vendor/lib/liblbs_core.so
 vendor/lib/liblocationservice.so
 
 # Audio
+vendor/lib/libacdbloader.so
 vendor/lib/libacdbloader.so:lib/libacdbloader.so
+vendor/lib/libacdbmapper.so
 vendor/lib/libaudcal.so
 vendor/lib/libcsd-client.so
 vendor/lib/libacdbrtac.so
@@ -35,9 +40,8 @@ lib/libmysound.so
 lib/libaudiosa.so
 lib/libsoundalive.so
 lib/lib_soundaliveresampler.so
-lib/libaudio-ril.so
-lib/libwebrtc_audio_coding.so
-lib/libwebrtc_audio_preprocessing.so
+lib/soundfx/libaudioeffectoffload.so
+lib/soundfx/libaudiosa_sec.so
 etc/Bluetooth_cal.acdb
 etc/General_cal.acdb
 etc/Handset_cal.acdb
@@ -45,18 +49,6 @@ etc/Global_cal.acdb
 etc/Hdmi_cal.acdb
 etc/Headset_cal.acdb
 etc/Speaker_cal.acdb
-etc/Diag_audio.cfg
-
-
-#etc/firmware/wcd9320/wcd9320_anc.bin
-#etc/firmware/wcd9320/wcd9320_mad_audio.bin
-#etc/firmware/wcd9320/wcd9320_mbhc.bin
-
-# mmparser extended
-vendor/lib/libExtendedExtractor.so
-vendor/lib/libmmparser.so
-vendor/lib/libmmosal.so
-vendor/lib/libDivxDrm.so
 
 # Adreno GPU
 vendor/lib/egl/eglsubAndroid.so
@@ -68,7 +60,6 @@ vendor/lib/libadreno_utils.so
 vendor/lib/libC2D2.so
 vendor/lib/libc2d30-a3xx.so
 vendor/lib/libc2d30.so
-vendor/lib/libc2d2_z180.so
 vendor/lib/libCB.so
 vendor/lib/libgsl.so
 vendor/lib/libOpenVG.so
@@ -78,21 +69,16 @@ vendor/lib/libllvm-qcom.so
 #vendor/lib/librs_adreno.so
 #vendor/lib/libRSDriver_adreno.so
 vendor/lib/libsc-a3xx.so
-vendor/lib/libRSDriver_adreno.so
-vendor/lib/librs_adreno.so
-vendor/lib/librs_adreno_sha1.so
 etc/firmware/a330_pfp.fw
 etc/firmware/a330_pm4.fw
 
 # Graphics
 vendor/lib/libmm-color-convertor.so
 
-lib/libsec-ril.so
-lib/libril.so
-#lib/cdma/libsec-ril.so
-#lib/cdma/libril.so
-#lib/gsm/libsec-ril.so
-#lib/gsm/libril.so
+lib/cdma/libsec-ril.so
+lib/cdma/libril.so
+lib/gsm/libsec-ril.so
+lib/gsm/libril.so
 #lib/libsensirion_h_2.so
 lib/hw/sensors.msm8974.so
 
@@ -100,6 +86,7 @@ lib/hw/sensors.msm8974.so
 bin/ds_fmc_appd
 bin/efsks
 bin/ks
+#vendor/bin/netmgrd
 #vendor/bin/sec-ril
 bin/qcks
 bin/qmiproxy
@@ -109,7 +96,8 @@ bin/rmt_storage
 lib/libatparser.so
 lib/libcordon.so
 vendor/lib/libdiag.so
-vendor/lib/libdsutils.so:lib/libdsutils.so
+vendor/lib/libdsutils.so
+#vendor/lib/libdsi_netctrl.so
 lib/libfactoryutil.so
 vendor/lib/libidl.so
 #lib/libnetmgr.so
@@ -132,35 +120,31 @@ lib/libsecril-client.so
 bin/time_daemon
 -vendor/lib/libtime_genoff.so
 
-# Unsorted
-vendor/lib/libmmQSM.so
-vendor/lib/libmmQTA.so
-vendor/lib/libmmhtppstack.so
-vendor/lib/libmmiipstreammmihttp.so
-vendor/lib/libmmipstreamaal.so
-vendor/lib/libmmipstreamnetwork.so
-vendor/lib/libmmipstreamsourcehttp.so
-vendor/lib/libmmipstreamutils.so
-vendor/lib/libmmrtpencoder.so
-vendor/lib/libmmrtpdecoder.so
-vendor/lib/libmmwfdinterface.so
-vendor/lib/libmmwfdsinkinterface.so
-vendor/lib/libmmwfdsrcinterface.so
+# Sensors
+lib/hw/sensorhubs.msm8974.so
 
-vendor/lib/libmm-hdcpmgr.so
+# Media
+lib/libOmxVdecHevc.so
+vendor/lib/libDivxDrm.so
+vendor/lib/libExtendedExtractor.so
+vendor/lib/libHevcSwDecoder.so
+vendor/lib/libI420colorconvert.so
+vendor/lib/libmmosal.so
+vendor/lib/libmmparser.so
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxAmrwbplusDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
+vendor/lib/libOmxWmaDec.so
+
 # Camera
 bin/mm-qcamera-daemon
-cameradata/C16QL_Isp0_s5k2p2xx.bin
-cameradata/C16QL_Isp1_s5k2p2xx.bin
-cameradata/F16QL_Isp0_s5k2p2xx.bin
-cameradata/F16QL_Isp1_s5k2p2xx.bin
-cameradata/F16QS_Isp0_imx240.bin
-cameradata/F16QS_Isp1_imx240.bin
-cameradata/Master0.bin
-cameradata/Master1.bin
-cameradata/cal_data_LSCmaster.bin
 cameradata/datapattern_420sp.yuv
 cameradata/datapattern_front_420sp.yuv
+etc/C16QL_s5k2p2xx_module_info.xml
+etc/F16QS_imx240_module_info.xml
+etc/F16QL_s5k2p2xx_module_info.xml
+lib/hw/camera.msm8974.so
 lib/libTsAe.so
 lib/libTsAf.so
 lib/libTs_J_Accm.so
@@ -170,7 +154,6 @@ lib/libqomx_core.so
 lib/libqomx_jpegenc.so
 lib/libliveframework.so
 lib/libarcsoft_nighthawk.so
-lib/libarccamera.so
 lib/C16QL_libchromatix_s5k2p2xx_default_video.so
 lib/C16QL_libchromatix_s5k2p2xx_golfshot.so
 lib/C16QL_libchromatix_s5k2p2xx_hdr_liveshot.so
@@ -243,7 +226,6 @@ lib/F16QS_libTsAe.so
 lib/F16QS_libTsAf.so
 lib/F16QS_libTs_J_Accm.so
 lib/F16QS_libTs_J_Awb.so
-lib/libmmipl.so
 lib/libmmcamera2_stats_algorithm.so
 lib/libmmcamera_cac3_lib.so
 lib/libmmcamera_fidelix_eeprom.so
@@ -308,7 +290,27 @@ vendor/lib/libchromatix_s5k8b1yx_snapshot.so
 vendor/lib/libchromatix_s5k8b1yx_vt_beauty.so
 vendor/lib/libchromatix_s5k8b1yx_smart_stay.so
 vendor/lib/liboemcamera.so
-vendor/lib/lib-imscamera.so
+
+# Wi-Fi
+etc/wifi/bcmdhd_apsta.bin
+#etc/wifi/bcmdhd_apsta.bin_a0
+etc/wifi/bcmdhd_mfg.bin
+#etc/wifi/bcmdhd_mfg.bin_a0
+etc/wifi/bcmdhd_sta.bin
+#etc/wifi/bcmdhd_sta.bin_a0
+etc/wifi/cred.conf
+etc/wifi/nvram_mfg.txt
+#etc/wifi/nvram_mfg.txt_a0
+#etc/wifi/nvram_mfg.txt
+#etc/wifi/nvram_mfg.txt_murata
+#etc/wifi/nvram_mfg.txt_murata_a0
+#etc/wifi/nvram_mfg.txt_muratafem1
+#etc/wifi/nvram_mfg.txt_muratafem2
+etc/wifi/nvram_net.txt
+#etc/wifi/nvram_net.txt_murata
+#etc/wifi/nvram_net.txt_murata_a0
+#etc/wifi/nvram_net.txt_muratafem1
+etc/wifi/wpa_supplicant.conf
 
 # Perf
 vendor/lib/libqc-opt.so
@@ -327,7 +329,7 @@ vendor/lib/liboemcrypto.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/libQSEEComAPI.so
-lib/libwvm.so
+vendor/lib/mediadrm/libwvdrmengine.so
 
 # IPC router security
 etc/sec_config
@@ -337,6 +339,10 @@ bin/irsc_util
 etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
+
+# nfc firmware
+vendor/firmware/bcm2079xB4_firmware.ncd
+vendor/firmware/bcm2079xB4_pre_firmware.ncd
 
 # postproc
 vendor/lib/libdisp-aba.so
