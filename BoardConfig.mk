@@ -81,8 +81,8 @@ AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
 # Build lights 
 TARGET_PROVIDES_LIBLIGHT := true
 
-# IR
-TARGET_PROVIDES_CONSUMERIR_HAL := true
+# vibrator
+BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/samsung/klte/vibrator/tspdrv.c
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
