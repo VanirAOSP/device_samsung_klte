@@ -99,9 +99,10 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
 TARGET_OTA_ASSERT_DEVICE := kltexx,kltespr,kltetmo,kltecan,klteatt,kltevzw,klte
-# PowerHAL
-#TARGET_POWERHAL_VARIANT := qcom
 
+
+# Consumerir
+TARGET_PROVIDES_CONSUMERIR_HAL := true
 
 # Consumerir
 TARGET_PROVIDES_CONSUMERIR_HAL := true
