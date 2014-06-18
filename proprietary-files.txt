@@ -134,9 +134,10 @@ cameradata/Master1.bin
 cameradata/cal_data_LSCmaster.bin
 cameradata/datapattern_420sp.yuv
 cameradata/datapattern_front_420sp.yuv
-etc/C16QL_s5k2p2xx_module_info.xml
-etc/F16QS_imx240_module_info.xml
-etc/F16QL_s5k2p2xx_module_info.xml
+etc/C13QL_s5k3l2xx_module_info.xml
+etc/C13QS_imx135_module_info.xml
+etc/D13QL_s5k3l2xx_module_info.xml
+etc/D13QS_imx135_module_info.xml
 lib/hw/camera.msm8974.so:lib/hw/camera.vendor.msm8974.so
 lib/libTsAe.so
 lib/libTsAf.so
