@@ -25,19 +25,19 @@ TARGET_MSM8974_COMMON_WLAN_VARIANT := prima
 -include device/samsung/msm8974-common/BoardConfigCommon.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/klte/include
-
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
 # Kernel Configs
 TARGET_KERNEL_CONFIG := msm8974_sec_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
+TARGET_KERNEL_VARIANT_CONFIG := msm8974pro_sec_klte_spr_defconfig
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --dt device/samsung/klte/dt.img --tags_offset 0x00000100
-BOARD_KERNEL_SEPARATED_DT := true
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --dt device/samsung/klte/dt.img --tags_offset 0x01e00000
+#BOARD_KERNEL_SEPARATED_DT := true
 #BOARD_CUSTOM_BOOTIMG_MK := device/samsung/klte/mkbootimg.mk
 
 # Graphics
@@ -78,10 +78,6 @@ BOARD_USES_CUSTOM_AUDIO_PLATFORM_PATH := device/samsung/klte/audio/platform
 AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
 AUDIO_FEATURE_DISABLED_FM := true
 AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
-#AUDIO_FEATURE_DISABLED_SSR := true
-#AUDIO_FEATURE_DISABLED_INCALL_MUSIC := true
-#AUDIO_FEATURE_DISABLED_SPKR_PROTECTION := true
-#AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
 
 WIFI_DRIVER_FW_PATH_P2P     := 
 
@@ -112,7 +108,6 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
 TARGET_OTA_ASSERT_DEVICE := kltexx,kltespr,kltetmo,kltecan,klteatt,kltevzw,klte
-TARGET_KERNEL_VARIANT_CONFIG := msm8974pro_sec_klte_eur_defconfig
 # PowerHAL
 #TARGET_POWERHAL_VARIANT := qcom
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := device/samsung/klte/power/power_ext.c
