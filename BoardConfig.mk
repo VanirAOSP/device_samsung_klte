@@ -29,10 +29,8 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/klte/include
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
 # Kernel Configs
-TARGET_KERNEL_SOURCE := kernel/samsung/hkte
 TARGET_KERNEL_CONFIG := msm8974_sec_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
-TARGET_KERNEL_VARIANT_CONFIG := msm8974_sec_mondrianwifi_defconfig
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
@@ -46,7 +44,6 @@ BOARD_CUSTOM_BOOTIMG_MK := device/samsung/klte/mkbootimg.mk
 BOARD_EGL_CFG := device/samsung/klte/egl.cfg
 
 # Recovery
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/klte/recovery/recovery_keys.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
@@ -55,7 +52,6 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := device/samsung/klte/rootdir/etc/fstab.qcom
-BOARD_RECOVERY_SWIPE := true
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 10485760
@@ -64,11 +60,15 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2569011200
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12661537792
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# WLAN: Use qmi-client interface to load the correct MAC address
-TARGET_USES_QCOM_WCNSS_QMI := true
+BOARD_RECOVERY_SWIPE := true
+
+# bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/klte/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/klte/bluetooth/vnd_klte.txt
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
+
+# NFC
+BOARD_NFC_HAL_SUFFIX := msm8974
 
 # Samsung's nonstandard csd-client
 BOARD_HAVE_NEW_QCOM_CSDCLIENT := true
@@ -83,7 +83,12 @@ AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
 #AUDIO_FEATURE_DISABLED_SPKR_PROTECTION := true
 #AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
 
-# Build lights
+WIFI_DRIVER_FW_PATH_P2P     := 
+
+# Don't use qcom camera HAL
+#USE_DEVICE_SPECIFIC_CAMERA := true
+
+# Build lights 
 TARGET_PROVIDES_LIBLIGHT := true
 
 # IR
