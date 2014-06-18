@@ -114,14 +114,7 @@ PRODUCT_PACKAGES += \
     macloader \
     crda \
     regulatory.bin \
-    linville.key.pub.pem \
-    wcnss_service \
-    libwcnss_qmi
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+    linville.key.pub.pem
 
 # libxml2 is needed for camera
 PRODUCT_PACKAGES += libxml2
