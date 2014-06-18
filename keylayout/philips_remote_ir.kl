@@ -61,3 +61,4 @@ key 181   TV_INPUT       WAKE	#USB
 key 127   FUNCTION       WAKE	#Source
 key 139   MENU           WAKE
 key 116   POWER          WAKE
+key 704   RECENTAPPS     WAKE
