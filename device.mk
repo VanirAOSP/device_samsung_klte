@@ -98,7 +98,6 @@ PRODUCT_PACKAGES += \
     init.crda.sh \
     init.sec.boot.sh
 
-
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
