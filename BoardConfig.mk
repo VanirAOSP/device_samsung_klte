@@ -20,11 +20,11 @@
 # definition file).
 #
 
-TARGET_MSM8974_COMMON_WLAN_VARIANT := prima
-
+# inherit from common msm8974
 -include device/samsung/msm8974-common/BoardConfigCommon.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/klte/include
+# Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
 # Kernel Configs
@@ -78,12 +78,6 @@ AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
 AUDIO_FEATURE_DISABLED_FM := true
 AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
 
-WIFI_DRIVER_FW_PATH_P2P     := 
-
-# Don't use qcom camera HAL
-#USE_DEVICE_SPECIFIC_CAMERA := true
-TARGET_PROVIDES_CAMERA_HAL_MSM8974 := true
-TARGET_PROVIDES_CAMERA_HAL := 
 # Build lights 
 TARGET_PROVIDES_LIBLIGHT := true
 
@@ -114,6 +108,9 @@ TARGET_POWERHAL_SET_INTERACTIVE_EXT := device/samsung/klte/power/power_ext.c
 
 # The "new" GPS is really the old GPS, override it.
 BOARD_HAVE_NEW_QC_GPS :=
+
+# Consumerir
+TARGET_PROVIDES_CONSUMERIR_HAL := true
 
 # We don't use old-ass RPC
 TARGET_NO_RPC := true
