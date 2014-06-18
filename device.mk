@@ -17,13 +17,10 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 ## Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/mondrianwifi/mondrianwifi-vendor.mk)
-
-## We are a tablet, not a phone
-PRODUCT_CHARACTERISTICS := tablet
+$(call inherit-product-if-exists, vendor/samsung/klte/klte-vendor.mk)
 
 ## overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/klte/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
@@ -35,9 +32,9 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
-    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/samsung/klte/audio/audio_effects.conf:system/etc/audio_effects.conf \
+    device/samsung/klte/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    device/samsung/klte/audio/audio_policy.conf:system/etc/audio_policy.conf \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -52,17 +49,13 @@ PRODUCT_COPY_FILES += \
 
 # Media Profile
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
+    device/samsung/klte/media/media_profiles.xml:system/etc/media_profiles.xml
 
 # Extended media support
 PRODUCT_PACKAGES += \
     qcmediaplayer
 
 PRODUCT_BOOT_JARS += qcmediaplayer
-
-# support for epen
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -71,11 +64,11 @@ PRODUCT_PACKAGES += \
     libloc_core \
     libloc_eng
 
-GPS_CONF := $(LOCAL_PATH)/gps/etc/gps.conf
+GPS_CONF := device/samsung/klte/gps/etc/gps.conf
 
 PRODUCT_COPY_FILES += \
     $(GPS_CONF):/system/etc/gps.conf \
-    $(LOCAL_PATH)/gps/etc/sap.conf:/system/etc/sap.conf
+    device/samsung/klte/gps/etc/sap.conf:/system/etc/sap.conf
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -86,13 +79,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/samsung_remote_ir.kl:system/usr/keylayout/samsung_remote_ir.kl \
     $(LOCAL_PATH)/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
     $(LOCAL_PATH)/keylayout/ue_rf4ce_remote.kl:system/usr/keylayout/ue_rf4ce_remote.kl
-
-# NFC doesn't exist
-
-PRODUCT_COPY_FILES_OVERRIDES += \
-   system/etc/permissions/com.android.nfc_extras.xml \
-   system/etc/permissions/android.hardware.nfc.xml \
-   system/etc/permissions/android.hardware.nfc.hce.xml
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -128,8 +114,12 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     tinymix
 
+# Torch
+PRODUCT_PACKAGES += Torch
+
 # Wifi
 PRODUCT_PACKAGES += \
+    libnetcmdiface \
     macloader \
     crda \
     regulatory.bin \
@@ -155,6 +145,37 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml
 
+NFCEE_ACCESS_PATH := device/samsung/klte/nfc/nfcee_access.xml
+
+ifeq ($(TARGET_NFC_TECH), nxp)
+PRODUCT_PACKAGES += \
+    libnfc \
+    libnfc_jni \
+    Nfc \
+    Tag \
+    com.android.nfc_extras
+
+PRODUCT_COPY_FILES += \
+    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
+
+else
+
+PRODUCT_PACKAGES += \
+    libnfc-nci \
+    libnfc_nci_jni \
+    nfc_nci.msm8974 \
+    NfcNci \
+    Tag \
+    com.android.nfc_extras
+
+PRODUCT_COPY_FILES += \
+    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml \
+    device/samsung/klte/nfc/libnfc-brcm-20791b05.conf:system/etc/libnfc-brcm-20791b05.conf \
+    device/samsung/klte/nfc/libnfc-brcm-20791b04.conf:system/etc/libnfc-brcm-20791b04.conf \
+    device/samsung/klte/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf
+
+endif
+
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
@@ -169,7 +190,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #common build.props
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.chipname=msm8974 \
-    ro.sf.lcd_density=320 \
+    ro.sf.lcd_density=480 \
     ro.opengles.version=196608 \
     persist.timed.enable=true \
     keyguard.no_require_sim=true
@@ -180,7 +201,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ril.subscription.types=NV,RUIM \
     ro.ril.hsxpa=1 \
     ro.ril.gprsclass=10 \
-    ro.use_data_netmgrd=false \
+    ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
     persist.radio.add_power_save=1 \
     persist.radio.apm_sim_not_pwdn=1 \
@@ -213,7 +234,7 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, device/samsung/msm8974-common/msm8974.mk)
 
 # call dalvik heap config
-$(call inherit-product, frameworks/native/build/tablet-7in-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 
 # call hwui memory config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
