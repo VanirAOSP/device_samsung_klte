@@ -82,9 +82,6 @@ AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
 # Build lights 
 TARGET_PROVIDES_LIBLIGHT := true
 
-# vibrator
-BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/samsung/klte/vibrator/tspdrv.c
-
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
@@ -104,12 +101,12 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 
 TARGET_OTA_ASSERT_DEVICE := kltexx,kltelra,kltespr,kltetmo,kltecan,klteatt,kltevzw,klteusc,kltedv,klteub,klteacg,klte
 
+# The "new" GPS is really the old GPS, override it.
+BOARD_HAVE_NEW_QC_GPS :=
 
 # Consumerir
 TARGET_PROVIDES_CONSUMERIR_HAL := true
 
-# Consumerir
-TARGET_PROVIDES_CONSUMERIR_HAL := true
 # We don't use old-ass RPC
 TARGET_NO_RPC := true
 
