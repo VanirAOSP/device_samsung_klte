@@ -106,12 +106,6 @@
         <item>"wifi_p2p,13,1,0,-1,true"</item>
     </string-array>
 
-    <!-- This device is not "voice capable"; it's data-only. -->
-    <bool name="config_voice_capable">false</bool>
-
-    <!-- This device does not allow sms service. -->
-    <bool name="config_sms_capable">false</bool>
-
     <!-- An Array of "[ConnectivityManager connectionType],
          [# simultaneous connection types]"  -->
     <string-array translatable="false" name="radioAttributes">
@@ -180,38 +174,38 @@
 <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
-        <item>31</item>
-        <item>50</item>
-        <item>51</item>
+        <item>1</item>
+        <item>20</item>
+        <item>21</item>
     </integer-array>
 
     <!-- Vibrator pattern for feedback about touching a virtual key -->
     <integer-array name="config_virtualKeyVibePattern">
         <item>0</item>
-        <item>40</item>
-        <item>50</item>
-        <item>60</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
     </integer-array>
 
     <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->
     <integer-array name="config_keyboardTapVibePattern">
-        <item>50</item>
+        <item>10</item>
     </integer-array>
 
     <!-- Vibrator pattern for feedback about booting with safe mode disabled -->
     <integer-array name="config_safeModeDisabledVibePattern">
         <item>0</item>
-        <item>31</item>
-        <item>50</item>
-        <item>51</item>
+        <item>1</item>
+        <item>20</item>
+        <item>21</item>
     </integer-array>
 
     <!-- Vibrator pattern for feedback about booting with safe mode disabled -->
     <integer-array name="config_safeModeEnabledVibePattern">
         <item>0</item>
-        <item>31</item>
-        <item>50</item>
-        <item>51</item>
+        <item>1</item>
+        <item>20</item>
+        <item>21</item>
         <item>500</item>
         <item>600</item>
     </integer-array>
@@ -219,17 +213,10 @@
     <!-- Vibrator pattern for feedback about hitting a scroll barrier -->
     <integer-array name="config_scrollBarrierVibePattern">
         <item>0</item>
-        <item>45</item>
-        <item>40</item>
-        <item>40</item>
+        <item>15</item>
+        <item>10</item>
+        <item>10</item>
     </integer-array>
-
-    <!-- Hide this setting because we are forcing it to be enabled in build.prop.
-         Note: This is declared in both values/config.xml and values-sw600dp/config.xml.
-               It is actually the latter definition that wins but overlay both
-               to be on the safe side.
- -->
-    <bool name="config_enableLockScreenRotation">false</bool>
 
     <!-- Workaround for devices with broken keyboards -->
     <bool name="config_forceDisableHardwareKeyboard">true</bool>
@@ -261,6 +248,9 @@
          supports Samsung Galaxy S4. -->
     <!-- <bool name="config_enableIrdaManagerService">true</bool> -->
 
+    <!-- Device supports LED flashlight -->
+    <bool name="config_enableTorch">true</bool>
+
     <!-- Enable translucent UI -->
     <bool name="config_enableLockScreenTranslucentDecor">true</bool>
     <bool name="config_enableTranslucentDecor">true</bool>
@@ -268,13 +258,6 @@
     <!-- Performance profiles -->
     <string name="config_perf_profile_prop">sys.perf.profile</string>
     <string name="config_perf_profile_default_entry">1</string>
-
-    <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">8</integer>
-
-    <!-- Indicate whether closing the lid causes the device to go to sleep and opening
-      it causes the device to wake up.
-      The default is false. -->
-    <bool name="config_lidControlsSleep">true</bool>
-
+    
+    <bool name="config_hotswapCapable">true</bool>
 </resources>
