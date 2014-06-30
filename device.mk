@@ -32,7 +32,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
-    device/samsung/klte/audio/audio_effects.conf:system/etc/audio_effects.conf \
+    device/samsung/klte/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     device/samsung/klte/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/samsung/klte/audio/audio_policy.conf:system/etc/audio_policy.conf \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml
