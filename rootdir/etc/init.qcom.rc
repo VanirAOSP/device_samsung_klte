@@ -72,9 +72,6 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
     # exec /system/bin/sh /init.qcom.early_boot.sh ${ro.board.platform}
     # exec /system/bin/sh /init.qcom.syspart_fixup.sh ${ro.board.platform} ${ro.serialno}
-    write /dev/wcnss_wlan 1
-    start wcnss-service
-
 
 on boot-pause
     exec system/bin/battery_charging
@@ -338,7 +335,9 @@ on post-fs-data
     mkdir /data/audio/ 0770 media audio
     # Enable the setgid bit on the directory
     chmod 2770 /data/audio
+
     setprop vold.post_fs_data_done 1
+
     #Create a folder for SRS to be able to create a usercfg file
     mkdir /data/data/media 0770 media media
 
@@ -430,6 +429,10 @@ service qmuxd /system/bin/qmuxd
     group radio audio bluetooth gps qcom_diag log
     disabled
 
+service netmgrd /system/bin/netmgrd
+    class main
+    disabled
+
 #service sensors /system/bin/sensors.qcom
 #    class late_start
 #    user root
@@ -448,13 +451,6 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
     oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant \
-service wcnss-service /system/bin/wcnss_service
-    class late_start
-    user system
-    group system wifi
-    disabled
-    oneshot
-
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
     -O/data/misc/wifi/sockets \
@@ -599,12 +595,7 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
 
 on property:sys.boot_completed=1
     start qcom-post-boot
-    write /sys/module/cpu_boost/parameters/boost_ms 10
-    write /sys/module/cpu_boost/parameters/sync_threshold 1728000
-    write /sys/module/cpu_boost/parameters/input_boost_freq 1497600
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
-    write /sys/module/cpu_boost/parameters/plug_boost_freq 1728000
-    write /sys/module/cpu_boost/parameters/plug_boost_ms 5
+    write /sys/block/mmcblk0/queue/scheduler row
 
 #service atfwd /system/bin/ATFWD-daemon
 #    class late_start
