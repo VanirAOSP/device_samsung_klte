@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2009,2011,2014 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -27,16 +27,25 @@
  *
  */
 
-#ifndef LOC_ENG_NMEA_H
-#define LOC_ENG_NMEA_H
+#ifndef LOC_ENG_NI_H
+#define LOC_ENG_NI_H
 
-#include "hardware/gps.h"
+#include <stdbool.h>
 
-#define NMEA_SENTENCE_MAX_LENGTH 200
+#define LOC_NI_NO_RESPONSE_TIME            20                      /* secs */
+#define LOC_NI_NOTIF_KEY_ADDRESS           "Address"
+#define GPS_NI_RESPONSE_IGNORE             4
 
-void loc_eng_nmea_send(char *pNmea, int length, loc_eng_data_s_type *loc_eng_data_p);
-int loc_eng_nmea_put_checksum(char *pNmea, int maxSize);
-void loc_eng_nmea_generate_sv(loc_eng_data_s_type *loc_eng_data_p, const GpsSvStatus &svStatus, const GpsLocationExtended &locationExtended);
-void loc_eng_nmea_generate_pos(loc_eng_data_s_type *loc_eng_data_p, const UlpLocation &location, const GpsLocationExtended &locationExtended, unsigned char generate_nmea);
+typedef struct {
+    pthread_t               thread;            /* NI thread */
+    int                     respTimeLeft;       /* examine time for NI response */
+    bool                    respRecvd;   /* NI User reponse received or not from Java layer*/
+    void*                   rawRequest;
+    int                     reqID;         /* ID to check against response */
+    GpsUserResponseType     resp;
+    pthread_cond_t          tCond;
+    pthread_mutex_t         tLock;
+} loc_eng_ni_data_s_type;
 
-#endif // LOC_ENG_NMEA_H
+
+#endif /* LOC_ENG_NI_H */

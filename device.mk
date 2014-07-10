@@ -44,8 +44,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Thermal config
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/thermald-8974.conf:system/etc/thermald-8974.conf \
     $(LOCAL_PATH)/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
-    $(LOCAL_PATH)/thermald-8974.conf:system/etc/thermald-8974.conf
 
 # Media Profile
 PRODUCT_COPY_FILES += \
@@ -59,16 +59,7 @@ PRODUCT_BOOT_JARS += qcmediaplayer
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8974 \
-    libgps.utils \
-    libloc_core \
-    libloc_eng
-
-GPS_CONF := device/samsung/klte/gps/etc/gps.conf
-
-PRODUCT_COPY_FILES += \
-    $(GPS_CONF):/system/etc/gps.conf \
-    device/samsung/klte/gps/etc/sap.conf:/system/etc/sap.conf
+    gps.msm8974
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -95,7 +86,8 @@ PRODUCT_PACKAGES += \
 # System init scripts
 PRODUCT_PACKAGES += \
     init.crda.sh \
-    init.sec.boot.sh
+    init.sec.boot.sh \
+    init-mdm.sh
 
 # Audio
 PRODUCT_PACKAGES += \

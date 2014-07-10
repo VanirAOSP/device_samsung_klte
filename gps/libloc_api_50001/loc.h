@@ -26,44 +26,39 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#ifndef __LOC_CONTEXT_BASE__
-#define __LOC_CONTEXT_BASE__
 
-#include <stdbool.h>
+#ifndef __LOC_H__
+#define __LOC_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 #include <ctype.h>
-#include <MsgTask.h>
-#include <LocApiBase.h>
-#include <LBSProxyBase.h>
+#include <cutils/properties.h>
+#include <hardware/gps.h>
+#include <gps_extended.h>
 
-namespace loc_core {
+typedef void (*loc_location_cb_ext) (UlpLocation* location, void* locExt);
+typedef void (*loc_sv_status_cb_ext) (GpsSvStatus* sv_status, void* svExt);
+typedef void* (*loc_ext_parser)(void* data);
 
-class LocAdapterBase;
+typedef struct {
+    loc_location_cb_ext location_cb;
+    gps_status_callback status_cb;
+    loc_sv_status_cb_ext sv_status_cb;
+    gps_nmea_callback nmea_cb;
+    gps_set_capabilities set_capabilities_cb;
+    gps_acquire_wakelock acquire_wakelock_cb;
+    gps_release_wakelock release_wakelock_cb;
+    gps_create_thread create_thread_cb;
+    loc_ext_parser location_ext_parser;
+    loc_ext_parser sv_ext_parser;
+    gps_request_utc_time request_utc_time_cb;
+} LocCallbacks;
 
-class ContextBase {
-    static LBSProxyBase* getLBSProxy(const char* libName);
-    LocApiBase* createLocApi(LOC_API_ADAPTER_EVENT_MASK_T excludedMask);
-protected:
-    const LBSProxyBase* mLBSProxy;
-    const MsgTask* mMsgTask;
-    LocApiBase* mLocApi;
-    LocApiProxyBase *mLocApiProxy;
-public:
-    ContextBase(const MsgTask* msgTask,
-                LOC_API_ADAPTER_EVENT_MASK_T exMask,
-                const char* libName);
-    inline virtual ~ContextBase() { delete mLocApi; delete mLBSProxy; }
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
-    inline const MsgTask* getMsgTask() { return mMsgTask; }
-    inline LocApiBase* getLocApi() { return mLocApi; }
-    inline LocApiProxyBase* getLocApiProxy() { return mLocApiProxy; }
-    inline bool hasAgpsExtendedCapabilities() { return mLBSProxy->hasAgpsExtendedCapabilities(); }
-    inline bool hasCPIExtendedCapabilities() { return mLBSProxy->hasCPIExtendedCapabilities(); }
-    inline void requestUlp(LocAdapterBase* adapter,
-                           unsigned long capabilities) {
-        mLBSProxy->requestUlp(adapter, capabilities);
-    }
-};
-
-} // namespace loc_core
-
-#endif //__LOC_CONTEXT_BASE__
+#endif //__LOC_H__

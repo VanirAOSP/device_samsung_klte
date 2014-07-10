@@ -113,6 +113,10 @@ TARGET_PROVIDES_CONSUMERIR_HAL := true
 # We don't use old-ass RPC
 TARGET_NO_RPC := true
 
+# GPS HAL
+TARGET_GPS_HAL_PATH := device/samsung/klte/gps
+TARGET_PROVIDES_GPS_LOC_API := true
+
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
