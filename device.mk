@@ -59,7 +59,10 @@ PRODUCT_BOOT_JARS += qcmediaplayer
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8974
+    gps.msm8974 \
+    gps.conf \
+    sap.conf \
+    klp.conf
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
