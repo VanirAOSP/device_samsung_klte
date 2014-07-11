@@ -104,9 +104,6 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 
 TARGET_OTA_ASSERT_DEVICE := kltexx,kltelra,kltespr,kltetmo,kltecan,klteatt,kltevzw,klteusc,kltedv,klteub,klteacg,kltedcm,klte
 
-# The "new" GPS is really the old GPS, override it.
-BOARD_HAVE_NEW_QC_GPS :=
-
 # Consumerir
 TARGET_PROVIDES_CONSUMERIR_HAL := true
 
