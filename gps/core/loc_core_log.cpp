@@ -256,3 +256,4 @@ const char* loc_get_agps_status_name(AGpsStatusValue status)
 {
     return loc_get_name_from_val(loc_eng_agps_status_names, loc_eng_agps_status_num, (long) status);
 }
+

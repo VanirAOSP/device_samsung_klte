@@ -114,8 +114,6 @@ TARGET_NO_RPC := true
 TARGET_GPS_HAL_PATH := device/samsung/klte/gps
 TARGET_PROVIDES_GPS_LOC_API := true
 
-GPS_CONF := device/samsung/klte/gps/etc/gps.conf
-
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
