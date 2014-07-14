@@ -67,9 +67,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/klte/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/klte/bluetooth/vnd_klte.txt
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 
-# Needed for blobs
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-
 # NFC
 BOARD_NFC_HAL_SUFFIX := msm8974
 
