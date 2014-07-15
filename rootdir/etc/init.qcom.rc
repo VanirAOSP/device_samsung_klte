@@ -634,11 +634,6 @@ service qcom-ril-sh /system/bin/sh /init.ril.sh
     disabled
     oneshot
 
-service ril-qmi /system/bin/sh /init.qcom.ril.sh
-    class main
-    user root
-    oneshot
-
 on property:vold.decrypt=trigger_restart_framework
     start qcom-ril-sh
     start config_bluetooth
