@@ -325,15 +325,15 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-#service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
-#    class main
-#    socket zygote stream 660 root system
-#    onrestart write /sys/android_power/request_state wake
-#    onrestart write /sys/power/state on
-#    onrestart restart media
-#    onrestart restart netd
-#    onrestart restart sensorhubservice
-#    onrestart restart gsiff_daemon
+service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
+    class main
+    socket zygote stream 660 root system
+    onrestart write /sys/android_power/request_state wake
+    onrestart write /sys/power/state on
+    onrestart restart media
+    onrestart restart netd
+    onrestart restart sensorhubservice
+    onrestart restart gsiff_daemon
 
 service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     class main
@@ -489,10 +489,6 @@ on property:service.bootanim.exit=1
 
 # msm specific files that need to be created on /data
 on post-fs-data
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/media 0775 media_rw media_rw
-    chown media_rw media_rw /data/media
-    
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     # Create the directories used by the Wireless subsystem
