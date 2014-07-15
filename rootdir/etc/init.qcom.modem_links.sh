@@ -476,7 +476,7 @@ case $linksNeeded in
             for imgfile in mc_v2*; do
                ln -s /firmware-modem/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
             done
-            break;;
+            ;;
          *)
             log -p w -t PIL 8974 device but no mc_v2 image found;;
       esac
