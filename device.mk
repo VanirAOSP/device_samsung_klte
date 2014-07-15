@@ -169,6 +169,10 @@ PRODUCT_PACKAGES += lights.MSM8974
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/vendor/lib/libqc-opt.so
 
+# some shit from the samsung default.props
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.strict_op_enable=false \
+
 #common build.props
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.chipname=msm8974 \
