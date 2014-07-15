@@ -68,6 +68,7 @@ BOARD_BLUEDROID_VENDOR_CONF := device/samsung/klte/bluetooth/vnd_klte.txt
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 
 # NFC
+TARGET_NFC_TECH := nxp
 BOARD_NFC_HAL_SUFFIX := msm8974
 
 # Samsung's nonstandard csd-client
