@@ -16,47 +16,27 @@
 
 """Custom OTA commands for klte devices"""
 
+gsm_bootloaders=["G900A", "G900T", "G900D", "G9005", "G900F", "G900W", "G900I", "G900M"]    # LIST OF ALL GSM BOOTLOADERS
+cdma_bootloaders=["G900V", "G900P", "G900R4", "G900R6", "G900R7"]                           # LIST OF ALL CDMA BOOTLOADERS
+
+def determineVariants(info, bootloader): # determines the specific sets of blobs to dump on top of /system/ recursively for this bootloader
+  variants=["gsm","nfc"]
+  if bootloader in cdma_bootloaders:
+    variants=["cdma"]
+    if bootloader == "G900P": # special case for sprint NFC
+      variants.append("nfcspr")
+    else:                     # else, use GSM NFC
+      variants.append("nfc")
+      if bootloader == "G900V": # additional VZW blobs?
+        variants.append("vzw")
+  return variants
+
+def writeVariantExtras(info, bootloader): # appendExtra the specficic directories to extract on top of /system/ for each one of all bootloaders
+  for var in determineVariants(info,bootloader):
+    info.script.AppendExtra('ifelse(is_substring("%s", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/blobs/%s/* /system/"));' % (bootloader, var))
+
 def FullOTA_InstallEnd(info):
-  info.script.AppendExtra('ifelse(is_substring("G900A", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/gsm/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900A", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
+  for bootloader in gsm_bootloaders+cdma_bootloaders:
+    writeVariantExtras(info,bootloader)
 
-  info.script.AppendExtra('ifelse(is_substring("G900T", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/gsm/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900T", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900D", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/gsm/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900D", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G9005", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/gsm/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G9005", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900F", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/gsm/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900F", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900W", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/gsm/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900W", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900I", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/gsm/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900I", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900M", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/gsm/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900M", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900V", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/cdma/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900V", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900P", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/cdma/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900P", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/spr/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900R4", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/cdma/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900R4", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900R6", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/cdma/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900R6", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('ifelse(is_substring("G900R7", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/cdma/* /system/lib/"));')
-  info.script.AppendExtra('ifelse(is_substring("G900R7", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp /system/lib/hw/gsm/* /system/lib/hw/"));')
-
-  info.script.AppendExtra('delete_recursive("/system/lib/hw/gsm/");')
-  info.script.AppendExtra('delete_recursive("/system/lib/hw/spr/");')
-  info.script.AppendExtra('delete_recursive("/system/lib/gsm/");')
-  info.script.AppendExtra('delete_recursive("/system/lib/cdma/");')
+  info.script.AppendExtra('delete_recursive("/system/blobs/");')
