@@ -1,4 +1,4 @@
-# Copyright (C) 2009 The CyanogenMod Project
+# Copyright (C) 2014 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/klte/include
 TARGET_OTA_ASSERT_DEVICE := kltexx,kltelra,kltespr,kltetmo,kltecan,klteatt,kltevzw,klteusc,kltedv,klteub,klteacg,kltedcm,klte
+TARGET_OTA_ASSERT_DEVICE := hltexx,hltespr,hltetmo,SM-N900T,hltecan,hlteatt,hltevzw,hlteusc,hlte
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
@@ -35,10 +36,8 @@ TARGET_KERNEL_SOURCE := kernel/samsung/klte
 ifeq ($(RECOVERY_VARIANT),)
 RECOVERY_VARIANT := twrp
 endif
-
 # Recovery (common)
 TARGET_RECOVERY_FSTAB := device/samsung/klte/rootdir/etc/fstab.qcom
-
 ifeq ($(RECOVERY_VARIANT),twrp)
 # Recovery (twrp)
 DEVICE_RESOLUTION := 1080x1920
@@ -65,8 +64,6 @@ TWRP_EVENT_LOGGING := true
 else
 # Recovery (cwm - unused)
 endif
-
-
 # Needed for blobs
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 TARGET_NEED_CAMERA_ZSL := true
@@ -114,17 +111,13 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 28651290624
 BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 
-
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/klte/recovery/recovery_keys.c
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-BOARD_USES_MMCUTILS := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_FSTAB := device/samsung/klte/rootdir/etc/fstab.qcom
-
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+BOARD_USES_MMCUTILS := true
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/klte
 

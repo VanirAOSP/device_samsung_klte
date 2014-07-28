@@ -50,7 +50,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
-
 # Audio acdb
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdb/Bluetooth_cal.acdb:system/etc/Bluetooth_cal.acdb \
@@ -60,10 +59,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdb/Hdmi_cal.acdb:system/etc/Hdmi_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/Headset_cal.acdb:system/etc/Headset_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/Speaker_cal.acdb:system/etc/Speaker_cal.acdb
-
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8974
 
 # GPS Config Files
 PRODUCT_COPY_FILES += \
@@ -85,6 +80,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     lights.msm8974
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8974
+
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
@@ -100,35 +99,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
 
-# Ramdisk
+# Keystore
 PRODUCT_PACKAGES += \
-    fstab.qcom \
-    initlogo.rle \
-    init.bt.rc \
-    init.carrier.rc \
-    init.qcom.rc \
-    init.qcom.usb.rc \
-    init.ril.rc \
-    init.target.rc \
-    ueventd.qcom.rc
-
+    keystore.msm8974
 # System init scripts
 PRODUCT_PACKAGES += \
     init.crda.sh \
     init.sec.boot.sh \
     init-mdm.sh
-
-# Thermal
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermald-8974.conf:system/etc/thermald-8974.conf \
-    $(LOCAL_PATH)/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf \
-# Torch
-PRODUCT_PACKAGES += Torch
-
-# Wifi
-PRODUCT_PACKAGES += \
-    libnetcmdiface \
-    macloader
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -152,20 +130,38 @@ PRODUCT_PACKAGES += \
     power.msm8974
 
 # Camera Wrapper
+# NFC
 PRODUCT_PACKAGES += \
     camera.msm8974 \
     libxml2
 
+PRODUCT_COPY_FILES += \
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.carrier.rc \
+    init.crda.sh \
+    init.qcom.rc \
+    init.qcom.usb.rc \
+    init.target.rc \
+    ueventd.qcom.rc
+
+# Thermal
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
+
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
+
+# Wifi
+PRODUCT_PACKAGES += \
+    libnetcmdiface \
+    macloader
 
 PRODUCT_COPY_FILES += \
    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
    $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
-# common msm8974
+# Common msm8974
 $(call inherit-product, device/samsung/msm8974-common/msm8974.mk)
-
-# call dalvik heap config
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-
-# call hwui memory config
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
