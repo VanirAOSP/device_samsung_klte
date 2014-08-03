@@ -20,7 +20,5 @@
 #define PROPERTY_PERMS_APPEND \
     { "persist.audio.",   AID_SYSTEM,   0 }, \
     { "persist.sys.camera.", AID_MEDIA, 0 }, \
-    { "camera.", AID_MEDIA, 0 }, \
-    { "sys.media.", AID_MEDIA, 0 }, \
     { "wlan.hdcp2.", AID_MEDIA, 0 },
 #endif /* DEVICE_PERMS_H */
