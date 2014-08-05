@@ -846,6 +846,11 @@ service media /system/bin/mediaserver
     group system audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm qcom_diag sdcard_rw sdcard_r media_rw shell qcom_diag lgt_gid
     ioprio rt 4
 
+service apaservice /system/bin/apaservice
+    class main
+    user jack
+    group system inet sdcard_rw sdcard_r media_rw shell
+
 service sdumpstate /system/bin/dumpstate -P
     class main
     disabled
