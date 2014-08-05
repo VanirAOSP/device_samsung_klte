@@ -97,7 +97,7 @@ TARGET_NO_RPC := true
 
 # Init
 TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_klte
+TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := device/samsung/klte/init/init_klte.c
 
 
