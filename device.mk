@@ -130,9 +130,32 @@ PRODUCT_PACKAGES += Torch
 PRODUCT_PACKAGES += \
     libnetcmdiface \
     macloader
+
+# Audio
+PRODUCT_PACKAGES += \
+    audiod \
+    audio.a2dp.default \
+    audio_policy.msm8974 \
+    audio.primary.msm8974 \
+    audio.r_submix.default \
+    audio.usb.default \
+    libaudio-resampler \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    tinymix
+
+# HAL
+PRODUCT_PACKAGES += \
+    copybit.msm8974 \
+    gralloc.msm8974 \
+    hwcomposer.msm8974 \
+    memtrack.msm8974 \
+    power.msm8974
+
 # Camera Wrapper
 PRODUCT_PACKAGES += \
-    camera.msm8974
+    camera.msm8974 \
+    libxml2
 
 
 PRODUCT_COPY_FILES += \
