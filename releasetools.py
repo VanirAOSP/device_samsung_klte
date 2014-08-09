@@ -33,7 +33,9 @@ def determineVariants(info, bootloader): # determines the specific sets of blobs
 
 def writeVariantExtras(info, bootloader): # appendExtra the specficic directories to extract on top of /system/ for each one of all bootloaders
   for var in determineVariants(info,bootloader):
-    info.script.AppendExtra('ifelse(is_substring("%s", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/blobs/%s/* /system/"));' % (bootloader, var))
+    extra = 'ifelse(is_substring("%s", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/blobs/%s/* /system/"));' % (bootloader, var)
+    info.script.AppendExtra(extra)
+    print extra
 
 def FullOTA_InstallEnd(info):
   for bootloader in gsm_bootloaders+cdma_bootloaders:
