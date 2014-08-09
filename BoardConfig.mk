@@ -22,6 +22,9 @@ TARGET_OTA_ASSERT_DEVICE := kltexx,kltelra,kltespr,kltetmo,kltecan,klteatt,kltev
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
+# We want our own to override msm8974-common's
+TARGET_PROVIDES_CAMERA_HAL := false
+
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/klte/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x00000000
