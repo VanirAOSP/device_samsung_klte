@@ -23,12 +23,13 @@ def determineVariants(info, bootloader): # determines the specific sets of blobs
   variants=["gsm","nfc"]
   if bootloader in cdma_bootloaders:
     variants=["cdma"]
-    if bootloader == "G900P": # special case for sprint NFC
+    if bootloader == "G900P":   # special case for sprint NFC
       variants.append("nfcspr")
-    else:                     # else, use GSM NFC
-      variants.append("nfc")
-      if bootloader == "G900V": # additional VZW blobs?
-        variants.append("vzw")
+    elif bootloader == "G900V": #verizon uses sprint NFC and special sauce
+      variants.append("nfcspr")
+      variants.append("vzw")
+    else:
+      variants.append("nfc")    # else - use gsm nfc
   return variants
 
 def writeVariantExtras(info, bootloader): # appendExtra the specficic directories to extract on top of /system/ for each one of all bootloaders
