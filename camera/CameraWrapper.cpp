@@ -523,7 +523,7 @@ int camera_device_open(const hw_module_t* module, const char* name,
             goto fail;
         }
         else
-            ALOGI("%s(%d): camera_device allocation success, __FUNCTION__, __LINE__");
+            ALOGI("%s(%d): camera_device allocation success", __FUNCTION__, __LINE__);
         memset(camera_device, 0, sizeof(*camera_device));
         camera_device->id = cameraid;
 
@@ -537,7 +537,7 @@ int camera_device_open(const hw_module_t* module, const char* name,
         camera_ops = (camera_device_ops_t*)malloc(sizeof(*camera_ops));
         if(!camera_ops)
         {
-            ALOGE("camera_ops allocation fail", __FUNCTION__, __LINE__);
+            ALOGE("%s(%d): camera_ops allocation fail", __FUNCTION__, __LINE__);
             rv = -ENOMEM;
             goto fail;
         }
