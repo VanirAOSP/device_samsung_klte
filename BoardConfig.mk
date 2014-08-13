@@ -84,6 +84,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 # Power HAL
 TARGET_POWERHAL_VARIANT := qcom
+WITH_QC_PERF := true
+TARGET_ENABLE_PREBUILT_CLANG := true
 
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/klte/recovery/recovery_keys.c
