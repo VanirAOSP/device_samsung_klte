@@ -124,11 +124,11 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.product.device", "klteacg");
         cdma_properties();
     } else if (strstr(bootloader, "G900V")) {
-        /* hltevzw */
+        /* kltevzw */
         property_set("ro.build.fingerprint", "Verizon/kltevzw/kltevzw:4.4.2/KOT49H/G900VVRU1ANCG:user/release-keys");
         property_set("ro.build.description", "kltevzw-user 4.4.2 KOT49H G900VVRU1ANCG release-keys");
         property_set("ro.product.model", "SM-G900V");
-        property_set("ro.product.device", "hltevzw");
+        property_set("ro.product.device", "kltevzw");
         cdma_properties();
         property_set("ro.telephony.default_cdma_sub", "0");
         property_set("ro.cdma.home.operator.alpha", "Verizon");
