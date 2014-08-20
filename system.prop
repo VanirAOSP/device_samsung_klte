@@ -28,4 +28,4 @@ rild.libpath=/system/lib/libsec-ril.so
 ro.ril.telephony.mqanelements=6
 
 # Sensors
-debug.sensors=1
+#debug.sensors=1
