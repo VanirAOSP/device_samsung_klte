@@ -34,9 +34,6 @@ TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 TARGET_KERNEL_VARIANT_CONFIG := msm8974pro_sec_klte_spr_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/klte
 
-# Needed for blobs??
-#COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-
 # Audio
 BOARD_HAVE_NEW_QCOM_CSDCLIENT := true
 BOARD_HAVE_SAMSUNG_AUDIO := true
@@ -54,14 +51,14 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/klte/bluetooth
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 BOARD_HAVE_BLUETOOTH_BCM := true
 
+# CMHW
+BOARD_HARDWARE_CLASS += device/samsung/klte/cmhw
+
 # Display
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 # GPS
 TARGET_NO_RPC := true
-
-# CMHW
-BOARD_HARDWARE_CLASS += device/samsung/jflte/cmhw
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm

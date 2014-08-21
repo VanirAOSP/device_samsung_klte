@@ -26,7 +26,7 @@ import java.io.IOException;
 import android.util.Log;
 
 /**
- * Glove mode / high touch sensitivity (on Samsung Galaxy S4)
+ * Glove mode / high touch sensitivity (on Samsung Galaxy S5)
  */
 public class HighTouchSensitivity {
 
