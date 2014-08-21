@@ -60,6 +60,9 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 # GPS
 TARGET_NO_RPC := true
 
+# CMHW
+BOARD_HARDWARE_CLASS += device/samsung/jflte/cmhw
+
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := device/samsung/klte/init/init_klte.c
