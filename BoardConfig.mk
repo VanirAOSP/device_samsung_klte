@@ -13,6 +13,7 @@
 # limitations under the License.
 
 # inherit from common msm8974
+TARGET_PROVIDES_CAMERA_HAL := false
 -include device/samsung/msm8974-common/BoardConfigCommon.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/klte/include
