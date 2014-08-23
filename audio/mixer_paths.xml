@@ -464,8 +464,8 @@
 		<path name="ear" />
 		<ctl name="HPHL Volume" value="20" />
 		<ctl name="HPHR Volume" value="20" />
-		<ctl name="RX1 Digital Volume" value="77" />
-		<ctl name="RX2 Digital Volume" value="77" />
+		<ctl name="RX1 Digital Volume" value="80" />
+		<ctl name="RX2 Digital Volume" value="80" />
 		<ctl name="COMP1 Switch" value="1" />
 	</path>
 
@@ -490,7 +490,7 @@
 
 	<path name="speaker-and-hdmi">
 		<path name="spk" />
-		<ctl name="RX7 Digital Volume" value="80" />
+		<ctl name="RX7 Digital Volume" value="81" />
 		<ctl name="SPK DRV Volume" value="8" />
 	</path>
 
@@ -711,8 +711,8 @@
 	<path name="voice-call-handset">
 		<path name="rcv" />
 		<ctl name="EAR PA Gain" value="POS_6_DB" />
-		<ctl name="RX1 Digital Volume" value="82" />
 		<ctl name="ES325 RX1 Enable" value="1" />
+		<ctl name="RX1 Digital Volume" value="84" />
 	</path>
 
 	<path name="voice-call-handset-extra-vol">
@@ -747,8 +747,8 @@
 		<path name="ear" />
 		<ctl name="HPHL Volume" value="16" />
 		<ctl name="HPHR Volume" value="16" />
-		<ctl name="RX1 Digital Volume" value="82" />
-		<ctl name="RX2 Digital Volume" value="82" />
+		<ctl name="RX1 Digital Volume" value="84" />
+		<ctl name="RX2 Digital Volume" value="84" />
 	</path>
 
 	<path name="voice-call-dock">
@@ -763,12 +763,12 @@
 		<ctl name="ES325 RX1 Enable" value="1" />
 		<path name="rcv" />
 		<ctl name="EAR PA Gain" value="POS_6_DB" />
-		<ctl name="RX1 Digital Volume" value="82" />
+		<ctl name="RX1 Digital Volume" value="84" />
 	</path>
 
 	<path name="voice-call-speaker-emergency">
 		<path name="spk" />
-		<ctl name="RX7 Digital Volume" value="82" />
+		<ctl name="RX7 Digital Volume" value="84" />
 		<ctl name="SPK DRV Volume" value="8" />
 		<ctl name="COMP0 Switch" value="1" />
 	</path>
