@@ -36,6 +36,18 @@
 
 #include "init_msm.h"
 
+void cdma_properties(char const *default_cdma_sub,
+        char const *operator_numeric, char const *operator_alpha)
+{
+    property_set("ril.subscription.types", "NV,RUIM");
+    property_set("ro.cdma.home.operator.numeric", operator_numeric);
+    property_set("ro.cdma.home.operator.alpha", operator_alpha);
+    property_set("ro.telephony.default_cdma_sub", default_cdma_sub);
+    property_set("ro.telephony.default_network", "10");
+    property_set("ro.telephony.ril.config", "newDriverCallU,newDialCode");
+    property_set("telephony.lteOnCdmaDevice", "1");
+}
+
 void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
 {
     char platform[PROP_VALUE_MAX];
